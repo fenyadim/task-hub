@@ -1,11 +1,14 @@
-import { Sidebar } from '@/components/layout'
+import { Header, Sidebar } from '@/components/layout'
 import type { PropsWithChildren } from 'react'
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
 	return (
-		<div>
+		<div className='flex h-full'>
 			<Sidebar />
-			<main>{children}</main>
+			<main className='p-5 flex-1'>
+				<Header />
+				{children}
+			</main>
 		</div>
 	)
 }
