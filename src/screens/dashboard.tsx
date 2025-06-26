@@ -1,16 +1,19 @@
-import { DASHBOARD_CARDS } from '@/components/layout/dashboard/constants'
-import { DashboardCard } from '@/components/layout/dashboard/dashboard-card'
+import {
+	DASHBOARD_CARDS,
+	DashboardCard,
+	ProjectChart,
+} from '@/components/dashboard'
 
 export const DashboardPage = () => {
 	return (
 		<div>
-			<div className='flex gap-3'>
+			<div className='flex gap-5'>
 				<div className='flex flex-col gap-3'>
 					{DASHBOARD_CARDS.map(item => (
 						<DashboardCard key={item.label} {...item} />
 					))}
 				</div>
-				<div>Charts</div>
+				<ProjectChart />
 			</div>
 		</div>
 	)

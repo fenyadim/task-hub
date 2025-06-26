@@ -15,7 +15,7 @@ export const DashboardCard = ({
 }: IDashboardCard) => {
 	return (
 		<div
-			className={`bg-${bgColor} rounded-xl p-3 py-5 flex gap-5 justify-between items-center dark:text-black`}
+			className={`${bgColor} rounded-xl p-3 py-5 flex flex-1 gap-5 justify-between items-center dark:text-black`}
 		>
 			<div>
 				<h2 className='text-3xl font-medium'>{value}</h2>
