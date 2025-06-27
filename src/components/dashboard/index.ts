@@ -1,4 +1,3 @@
-export { DASHBOARD_CARDS } from './constants'
-export { DashboardCard } from './dashboard-card'
+export { LastTasks } from './last-tasks'
 export { ProjectChart } from './project-chart'
-export { SelectInterval } from './project-chart/select-interval'
+export { ProjectStats } from './project-stats'

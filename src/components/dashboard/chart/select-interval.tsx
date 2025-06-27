@@ -6,10 +6,11 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 import { INTERVAL_DATA } from './constants'
+import type { ChartInterval } from './types'
 
 interface ISelectInterval {
-	value: string
-	onChange: (value: string) => void
+	value: ChartInterval
+	onChange: (value: ChartInterval) => void
 }
 
 export const SelectInterval = ({ value, onChange }: ISelectInterval) => {
