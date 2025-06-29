@@ -1,18 +1,13 @@
 import Image from 'next/image'
 
-export interface IDashboardCard {
+export interface IStatsCard {
 	label: string
 	value: string | number
 	bgColor: string
 	srcImage: string
 }
 
-export const DashboardCard = ({
-	label,
-	value,
-	bgColor,
-	srcImage,
-}: IDashboardCard) => {
+export const StatsCard = ({ label, value, bgColor, srcImage }: IStatsCard) => {
 	return (
 		<div
 			className={`${bgColor} rounded-xl p-3 py-5 flex flex-1 gap-5 justify-between items-center dark:text-black`}

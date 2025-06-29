@@ -7,13 +7,23 @@ import {
 	MessageSquareMore,
 	Plus,
 } from 'lucide-react'
+import { useMemo } from 'react'
 import type { ITask } from './types'
 
-export const TaskCard = (props: ITask) => {
-	const { Icon, title, dueDate, users, subTasks, resources, links, comments } =
-		props
-
-	const completedCount = subTasks.filter(t => t.isCompleted).length
+export const TaskCard = ({
+	Icon,
+	title,
+	dueDate,
+	users,
+	subTasks,
+	resources,
+	links,
+	comments,
+}: ITask) => {
+	const completedCount = useMemo(
+		() => subTasks.filter(({ isCompleted }) => isCompleted).length,
+		[subTasks]
+	)
 	const totalCount = subTasks.length
 	const progress = Math.round((completedCount / totalCount) * 100)
 

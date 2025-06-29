@@ -1,4 +1,4 @@
-import type { IDashboardCard } from './dashboard-card'
+import type { IDashboardCard } from './stats-card'
 
 export const DASHBOARD_CARDS: IDashboardCard[] = [
 	{
