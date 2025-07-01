@@ -1,6 +1,6 @@
-import type { IDashboardCard } from './stats-card'
+import type { IStatsCard } from './stats-card'
 
-export const DASHBOARD_CARDS: IDashboardCard[] = [
+export const DASHBOARD_CARDS: IStatsCard[] = [
 	{
 		label: 'Active Project',
 		value: 92,
