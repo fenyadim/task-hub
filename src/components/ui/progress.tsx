@@ -1,34 +1,39 @@
 'use client'
 
-import * as ProgressPrimitive from '@radix-ui/react-progress'
-import * as React from 'react'
+import { CircleCheck } from 'lucide-react'
+import { useMemo } from 'react'
+import { Progress as ProgressUI } from './progressUI'
 
-import { cn } from '@/lib/utils'
-
-function Progress({
-	className,
-	value,
-	...props
-}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
-	return (
-		<ProgressPrimitive.Root
-			data-slot='progress'
-			className={cn(
-				'bg-primary/20 relative h-10 w-full overflow-hidden rounded-full',
-				className
-			)}
-			{...props}
-		>
-			<ProgressPrimitive.Indicator
-				data-slot='progress-indicator'
-				className='bg-primary h-full w-full flex-1 transition-all'
-				style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-			/>
-			<p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-medium text-white'>
-				{value} %
-			</p>
-		</ProgressPrimitive.Root>
-	)
+interface IProgress {
+	value: number
 }
 
-export { Progress }
+export const Progress = ({ value }: IProgress) => {
+	const content = useMemo(() => {
+		if (value === 100) {
+			return (
+				<>
+					<CircleCheck />
+					Done
+				</>
+			)
+		}
+		return `${value}%`
+	}, [value])
+
+	const colorProgressBar = useMemo(() => {
+		if (value === 100) return 'bg-emerald-500'
+		if (value >= 75) return 'bg-amber-400'
+		if (value >= 50) return 'bg-primary'
+		if (value >= 25) return 'bg-rose-400'
+		return 'bg-neutral-300'
+	}, [value])
+
+	return (
+		<ProgressUI
+			value={value}
+			contentElement={content}
+			color={colorProgressBar}
+		/>
+	)
+}

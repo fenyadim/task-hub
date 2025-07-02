@@ -41,6 +41,17 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+
+	--animate-progress: progress 1s linear infinite;
+
+	@keyframes progress {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 28px 0;
+		}
+	}
 }
 
 :root {

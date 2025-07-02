@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { useMemo } from 'react'
 import type { ITask } from './types'
+import { progressValue } from './utils'
 
 export const TaskCard = ({
 	Icon,
@@ -21,15 +22,10 @@ export const TaskCard = ({
 	links,
 	comments,
 }: ITask) => {
-	const completedCount = useMemo(
-		() => subTasks.filter(({ isCompleted }) => isCompleted).length,
-		[subTasks]
-	)
-	const totalCount = subTasks.length
-	const progress = Math.round((completedCount / totalCount) * 100)
+	const progress = useMemo(() => progressValue(subTasks), [subTasks])
 
 	return (
-		<div className='grid grid-rows-[2fr_auto_auto] flex-1 gap-4 bg-sidebar rounded-xl p-5'>
+		<div className='grid grid-rows-[2fr_auto_auto] gap-4 bg-sidebar rounded-xl p-5'>
 			<div className='flex items-center justify-between gap-2'>
 				<div className='flex items-center gap-2'>
 					<div className='relative size-12 bg-accent/20 rounded-full p-3'>

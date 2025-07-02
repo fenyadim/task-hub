@@ -46,3 +46,14 @@ export const TASK_DATA: ITask[] = [
 		],
 	},
 ]
+
+export const FILTER_DATA = [
+	{ label: 'All', value: 'all' },
+	{ label: 'Completed', value: 'completed' },
+	{ label: 'Uncompleted', value: 'uncompleted' },
+]
+
+export const SORT_DATA = [
+	{ label: 'Ascending', value: 'asc' },
+	{ label: 'Descending', value: 'desc' },
+]
