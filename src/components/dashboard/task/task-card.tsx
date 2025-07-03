@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { UserAvatar } from '@/components/ui/user-avatar'
+import type { ITask } from '@/types'
 import {
 	Edit,
 	Image as ImageSvg,
@@ -9,7 +10,7 @@ import {
 	Plus,
 } from 'lucide-react'
 import { useMemo } from 'react'
-import type { ITask } from './types'
+import { EditDialog } from './dialog/edit-dialog'
 import { progressValue } from './utils'
 
 export const TaskCard = ({
@@ -62,9 +63,11 @@ export const TaskCard = ({
 					<Button className='rounded-full' size='icon'>
 						<Plus />
 					</Button>
-					<Button className='rounded-full' variant='outline' size='icon'>
-						<Edit />
-					</Button>
+					<EditDialog>
+						<Button className='rounded-full' variant='outline' size='icon'>
+							<Edit />
+						</Button>
+					</EditDialog>
 				</div>
 			</div>
 		</div>

@@ -1,38 +1,20 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useFilterTasks } from '@/hooks/useFilterTasks'
 import { Select } from '../ui/select'
 import { FILTER_DATA, SORT_DATA, TASK_DATA } from './task/constants'
 import { TaskCard } from './task/task-card'
-import { progressValue } from './task/utils'
 
 export const LastTasks = () => {
-	const [filter, setFilter] = useState('all')
-	const [sortDeadline, setSortDeadline] = useState('asc')
-
-	const tasks = useMemo(() => {
-		if (filter === 'completed') {
-			return TASK_DATA.filter(({ subTasks }) => progressValue(subTasks) === 100)
-		}
-		if (filter === 'uncompleted') {
-			return TASK_DATA.filter(({ subTasks }) => progressValue(subTasks) !== 100)
-		}
-		return TASK_DATA
-	}, [filter])
-
-	const sortedTasks = useMemo(() => {
-		if (sortDeadline === 'asc') {
-			return tasks.sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime())
-		}
-		return tasks.sort((a, b) => b.dueDate.getTime() - a.dueDate.getTime())
-	}, [tasks, sortDeadline])
+	const { filter, setFilter, sortDeadline, setSortDeadline, tasks } =
+		useFilterTasks(TASK_DATA)
 
 	return (
 		<div>
 			<div className='flex justify-between'>
 				<h2 className='font-medium text-xl mb-4'>
 					Last Tasks{' '}
-					<span className='opacity-40 font-normal'>({sortedTasks.length})</span>
+					<span className='opacity-40 font-normal'>({tasks.length})</span>
 				</h2>
 				<div className='flex gap-2'>
 					<Select
@@ -49,9 +31,9 @@ export const LastTasks = () => {
 					/>
 				</div>
 			</div>
-			{sortedTasks.length ? (
+			{tasks.length ? (
 				<div className='grid grid-cols-3 gap-5'>
-					{sortedTasks.map(item => (
+					{tasks.map(item => (
 						<TaskCard key={item.id} {...item} />
 					))}
 				</div>

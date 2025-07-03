@@ -1,6 +1,6 @@
 import { Calendar, File, User } from 'lucide-react'
 import { USERS } from '../../user.data'
-import type { ITask } from '../types'
+import type { IFilterData, ISortData, ITask } from '../types'
 
 export const TASK_DATA: ITask[] = [
 	{
@@ -47,13 +47,13 @@ export const TASK_DATA: ITask[] = [
 	},
 ]
 
-export const FILTER_DATA = [
+export const FILTER_DATA: IFilterData[] = [
 	{ label: 'All', value: 'all' },
 	{ label: 'Completed', value: 'completed' },
 	{ label: 'Uncompleted', value: 'uncompleted' },
 ]
 
-export const SORT_DATA = [
+export const SORT_DATA: ISortData[] = [
 	{ label: 'Ascending', value: 'asc' },
 	{ label: 'Descending', value: 'desc' },
 ]
