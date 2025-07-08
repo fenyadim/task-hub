@@ -9,6 +9,7 @@ interface ProgressProps
 	extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
 	contentElement: React.ReactNode
 	color: string
+	value: number
 }
 
 function Progress({
@@ -33,7 +34,12 @@ function Progress({
 				style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
 			/>
 			<div
-				className='absolute top-0 left-0 h-10 pointer-events-none animate-progress bg-[length:28px_28px]'
+				className={cn(
+					'absolute top-0 left-0 h-10 pointer-events-none  bg-[length:28px_28px]',
+					{
+						'animate-progress': value < 100,
+					}
+				)}
 				style={{
 					width: `${value}%`,
 					backgroundImage:
