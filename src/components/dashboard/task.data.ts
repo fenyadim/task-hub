@@ -1,12 +1,13 @@
-import { Calendar, File, User } from 'lucide-react'
-import { USERS } from '../../user.data'
-import type { IFilterData, ISortData, ITask } from '../types'
+import type { ITask } from '@/types'
+import { ICON_MAP } from './task/constants/task-icons.data'
+import type { IFilterData, ISortData } from './task/types'
+import { USERS } from './user.data'
 
 export const TASK_DATA: ITask[] = [
 	{
 		id: 'task-1',
 		title: 'Design project structure',
-		Icon: Calendar,
+		Icon: ICON_MAP.Calendar,
 		dueDate: new Date('2024-07-01'),
 		users: [USERS[0], USERS[1], USERS[2]],
 		comments: ['Initial structure created', 'Need review'],
@@ -20,7 +21,7 @@ export const TASK_DATA: ITask[] = [
 	{
 		id: 'task-2',
 		title: 'Implement authentication',
-		Icon: User,
+		Icon: ICON_MAP.User,
 		dueDate: new Date('2024-07-05'),
 		users: [USERS[2], USERS[3]],
 		comments: ['OAuth2 integration started'],
@@ -34,7 +35,7 @@ export const TASK_DATA: ITask[] = [
 	{
 		id: 'task-3',
 		title: 'Upload project files',
-		Icon: File,
+		Icon: ICON_MAP.File,
 		dueDate: new Date('2024-07-10'),
 		users: [USERS[4]],
 		comments: [],

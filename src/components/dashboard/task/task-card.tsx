@@ -10,6 +10,7 @@ import {
 	Plus,
 } from 'lucide-react'
 import { useMemo } from 'react'
+import type { IconName } from './constants/task-icons.data'
 import { EditDialog } from './dialog/edit-dialog'
 import { progressValue } from './utils'
 
@@ -63,7 +64,13 @@ export const TaskCard = ({
 					<Button className='rounded-full' size='icon'>
 						<Plus />
 					</Button>
-					<EditDialog>
+					<EditDialog
+						initialValues={{
+							title,
+							dueDate,
+							icon: Icon.displayName as IconName,
+						}}
+					>
 						<Button className='rounded-full' variant='outline' size='icon'>
 							<Edit />
 						</Button>

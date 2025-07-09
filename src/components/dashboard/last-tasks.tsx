@@ -2,7 +2,7 @@
 
 import { useFilterTasks } from '@/hooks/useFilterTasks'
 import { Select } from '../ui/select'
-import { FILTER_DATA, SORT_DATA, TASK_DATA } from './task/constants'
+import { FILTER_DATA, SORT_DATA, TASK_DATA } from './task.data'
 import { TaskCard } from './task/task-card'
 
 export const LastTasks = () => {

@@ -1,4 +1,4 @@
-import type { ISubTask } from '../types'
+import type { ISubTask } from '@/types'
 
 export const progressValue = (subTasks: ISubTask[]) => {
 	const completedCount = subTasks.filter(

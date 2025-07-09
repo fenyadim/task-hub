@@ -31,12 +31,16 @@ import {
 	taskFormSchema,
 	type TaskFormDataType,
 } from '../constants/task-form.validate'
+import { ICON_MAP, ICON_NAMES } from '../constants/task-icons.data'
 
-interface IEditDialog extends PropsWithChildren {}
+interface IEditDialog extends PropsWithChildren {
+	initialValues?: TaskFormDataType
+}
 
-export const EditDialog = ({ children }: IEditDialog) => {
+export const EditDialog = ({ children, initialValues }: IEditDialog) => {
 	const form = useForm<TaskFormDataType>({
 		resolver: zodResolver(taskFormSchema),
+		defaultValues: initialValues,
 	})
 
 	const onSubmit = (data: TaskFormDataType) => console.log(data)
@@ -49,10 +53,10 @@ export const EditDialog = ({ children }: IEditDialog) => {
 					<DialogTitle>Edit task</DialogTitle>
 				</DialogHeader>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
+					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
 						<FormField
 							control={form.control}
-							name='name'
+							name='title'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Title</FormLabel>
@@ -106,7 +110,38 @@ export const EditDialog = ({ children }: IEditDialog) => {
 							)}
 						/>
 
-						<Button type='submit'>Submit</Button>
+						<FormField
+							control={form.control}
+							name='icon'
+							render={({ field }) => (
+								<FormItem className='flex flex-col'>
+									<FormLabel>Icon</FormLabel>
+									<FormControl>
+										<div className='flex gap-2'>
+											{ICON_NAMES.map(name => {
+												const Icon = ICON_MAP[name]
+												return (
+													<Button
+														key={name}
+														type='button'
+														size='icon'
+														onClick={() => field.onChange(name)}
+														variant={
+															field.value === name ? 'default' : 'outline'
+														}
+													>
+														<Icon />
+													</Button>
+												)
+											})}
+										</div>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<Button type='submit'>Save</Button>
 					</form>
 				</Form>
 			</DialogContent>
