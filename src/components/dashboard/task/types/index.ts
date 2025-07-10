@@ -1,11 +1,11 @@
-import type { FilterTasks, SortBy } from '@/types/task'
+import type { TTaskFilter, TTaskSortBy } from '@/types/task'
 
 export interface IFilterData {
-	value: FilterTasks
+	value: TTaskFilter
 	label: string
 }
 
 export interface ISortData {
-	value: SortBy
+	value: TTaskSortBy
 	label: string
 }

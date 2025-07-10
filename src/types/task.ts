@@ -17,5 +17,7 @@ export interface ITask extends Omit<ISubTask, 'isCompleted'> {
 	subTasks: ISubTask[]
 }
 
-export type FilterTasks = 'all' | 'completed' | 'uncompleted'
-export type SortBy = 'asc' | 'desc'
+export type TTaskFilter = 'all' | 'completed' | 'uncompleted'
+export type TTaskSortBy = 'asc' | 'desc'
+export type TTaskFormData = Pick<ITask, 'title' | 'dueDate' | 'Icon'>
+export type TSubTaskFormData = Pick<ISubTask, 'title'>

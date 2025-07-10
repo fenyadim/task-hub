@@ -12,22 +12,22 @@ type Content = {
 }
 
 interface ISelect<T> {
-	initialValue: T
+	value: T
 	onChange: (value: T) => void
 	content: Content[]
 	className?: string
 }
 
 export const Select = <T extends string>({
-	initialValue,
+	value,
 	content,
 	onChange,
 	className,
 }: ISelect<T>) => {
 	return (
-		<SelectUI value={initialValue} onValueChange={onChange}>
+		<SelectUI value={value} onValueChange={onChange}>
 			<SelectTrigger className={className}>
-				<SelectValue placeholder='Interval' />
+				<SelectValue placeholder={value} />
 			</SelectTrigger>
 			<SelectContent>
 				{content.map(({ value, label }) => (

@@ -14,7 +14,7 @@ export const ProjectChart = () => {
 			<div className='flex justify-between'>
 				<h2 className='font-medium text-2xl'>Projects Statistic</h2>
 				<Select
-					initialValue={interval}
+					value={interval}
 					onChange={setInterval}
 					content={INTERVAL_DATA}
 				/>

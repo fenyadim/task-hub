@@ -1,39 +1,31 @@
 'use client'
 
-import { useFilterTasks } from '@/hooks/useFilterTasks'
-import { Select } from '../ui/select'
-import { FILTER_DATA, SORT_DATA, TASK_DATA } from './task.data'
+import { taskStore } from '@/stores/task.store'
+import { observer } from 'mobx-react-lite'
 import { TaskCard } from './task/task-card'
+import { TaskFilter } from './task/task-filter'
+import { TaskSorting } from './task/task-sorting'
 
-export const LastTasks = () => {
-	const { filter, setFilter, sortDeadline, setSortDeadline, tasks } =
-		useFilterTasks(TASK_DATA)
+export const LastTasks = observer(() => {
+	const filteredTasks = taskStore.filteredTasks
 
 	return (
 		<div>
 			<div className='flex justify-between'>
 				<h2 className='font-medium text-xl mb-4'>
 					Last Tasks{' '}
-					<span className='opacity-40 font-normal'>({tasks.length})</span>
+					<span className='opacity-40 font-normal'>
+						({filteredTasks.length})
+					</span>
 				</h2>
 				<div className='flex gap-2'>
-					<Select
-						className='bg-sidebar'
-						initialValue={filter}
-						onChange={setFilter}
-						content={FILTER_DATA}
-					/>
-					<Select
-						className='bg-sidebar'
-						initialValue={sortDeadline}
-						onChange={setSortDeadline}
-						content={SORT_DATA}
-					/>
+					<TaskFilter />
+					<TaskSorting />
 				</div>
 			</div>
-			{tasks.length ? (
+			{filteredTasks.length ? (
 				<div className='grid grid-cols-3 gap-5'>
-					{tasks.map(item => (
+					{filteredTasks.map(item => (
 						<TaskCard key={item.id} {...item} />
 					))}
 				</div>
@@ -44,4 +36,4 @@ export const LastTasks = () => {
 			)}
 		</div>
 	)
-}
+})

@@ -1,10 +1,10 @@
 import { progressValue } from '@/components/dashboard/task/utils'
-import type { FilterTasks, ITask, SortBy } from '@/types'
+import type { ITask, TTaskFilter, TTaskSortBy } from '@/types/task'
 import { useMemo, useState } from 'react'
 
 export const useFilterTasks = (data: ITask[]) => {
-	const [filter, setFilter] = useState<FilterTasks>('all')
-	const [sortDeadline, setSortDeadline] = useState<SortBy>('asc')
+	const [filter, setFilter] = useState<TTaskFilter>('all')
+	const [sortDeadline, setSortDeadline] = useState<TTaskSortBy>('asc')
 
 	const tasks = useMemo(() => {
 		if (filter === 'completed') {
