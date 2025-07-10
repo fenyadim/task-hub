@@ -1,17 +1,11 @@
-import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { UserAvatar } from '@/components/ui/user-avatar'
-import type { ITask } from '@/types'
-import {
-	Edit,
-	Image as ImageSvg,
-	Link,
-	MessageSquareMore,
-	Plus,
-} from 'lucide-react'
+import type { ITask } from '@/types/task'
+import { Image as ImageSvg, Link, MessageSquareMore } from 'lucide-react'
 import { useMemo } from 'react'
 import type { IconName } from './constants/task-icons.data'
-import { EditDialog } from './dialog/edit-dialog'
+import { CreateSubtask } from './dialog/create-subtask'
+import { EditTask } from './dialog/edit-task'
 import { progressValue } from './utils'
 
 export const TaskCard = ({
@@ -61,20 +55,14 @@ export const TaskCard = ({
 					</p>
 				</div>
 				<div className='flex gap-2'>
-					<Button className='rounded-full' size='icon'>
-						<Plus />
-					</Button>
-					<EditDialog
+					<CreateSubtask subtaskList={subTasks} />
+					<EditTask
 						initialValues={{
 							title,
 							dueDate,
 							icon: Icon.displayName as IconName,
 						}}
-					>
-						<Button className='rounded-full' variant='outline' size='icon'>
-							<Edit />
-						</Button>
-					</EditDialog>
+					/>
 				</div>
 			</div>
 		</div>

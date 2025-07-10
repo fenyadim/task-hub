@@ -1,4 +1,4 @@
-import type { FilterTasks, SortBy } from '@/types'
+import type { FilterTasks, SortBy } from '@/types/task'
 
 export interface IFilterData {
 	value: FilterTasks

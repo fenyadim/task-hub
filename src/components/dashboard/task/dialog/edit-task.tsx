@@ -24,8 +24,7 @@ import {
 import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
-import { CalendarIcon } from 'lucide-react'
-import type { PropsWithChildren } from 'react'
+import { CalendarIcon, Edit } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import {
 	taskFormSchema,
@@ -33,12 +32,12 @@ import {
 } from '../constants/task-form.validate'
 import { ICON_MAP, ICON_NAMES } from '../constants/task-icons.data'
 
-interface IEditDialog extends PropsWithChildren {
+interface IEditTask {
 	initialValues?: TaskFormDataType
 }
 
-export const EditDialog = ({ children, initialValues }: IEditDialog) => {
-	const form = useForm<TaskFormDataType>({
+export const EditTask = ({ initialValues }: IEditTask) => {
+	const form = useForm({
 		resolver: zodResolver(taskFormSchema),
 		defaultValues: initialValues,
 	})
@@ -47,7 +46,11 @@ export const EditDialog = ({ children, initialValues }: IEditDialog) => {
 
 	return (
 		<Dialog>
-			<DialogTrigger asChild>{children}</DialogTrigger>
+			<DialogTrigger asChild>
+				<Button className='rounded-full' variant='outline' size='icon'>
+					<Edit />
+				</Button>
+			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Edit task</DialogTitle>

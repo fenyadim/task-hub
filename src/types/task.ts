@@ -1,11 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-
-export interface IUser {
-	id: string
-	name: string
-	imagePath?: string
-	email: string
-}
+import type { IUser } from './user'
 
 export interface ISubTask {
 	id: string

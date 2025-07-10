@@ -1,4 +1,4 @@
-import type { ITask } from '@/types'
+import type { ITask } from '@/types/task'
 import { ICON_MAP } from './task/constants/task-icons.data'
 import type { IFilterData, ISortData } from './task/types'
 import { USERS } from './user.data'
