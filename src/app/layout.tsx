@@ -1,6 +1,5 @@
-import { ThemeSwitcher } from '@/components/layout/theme-switcher'
 import { SITE_NAME } from '@/constants'
-import { ThemeProvider } from '@/providers/theme-provider'
+import { RootProvider } from '@/providers/providers'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
@@ -30,15 +29,7 @@ export default function RootLayout({
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<body className={`${poppinsSans.variable} antialiased`}>
-				<ThemeProvider
-					attribute='class'
-					defaultTheme='dark'
-					enableSystem
-					disableTransitionOnChange
-				>
-					{children}
-					<ThemeSwitcher />
-				</ThemeProvider>
+				<RootProvider>{children}</RootProvider>
 			</body>
 		</html>
 	)

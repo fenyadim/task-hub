@@ -9,7 +9,7 @@ export const SubtaskItem = ({ id, title, isCompleted }: ISubTask) => {
 		<div className='flex items-center gap-3'>
 			<Checkbox id={id} defaultChecked={isCompleted} />
 			<Input id={id} defaultValue={title} />
-			<Button variant='destructive'>
+			<Button variant='destructive' size='icon'>
 				<Trash />
 			</Button>
 		</div>

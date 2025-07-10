@@ -6,15 +6,44 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import type { ISubTask } from '@/types/task'
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus } from 'lucide-react'
-import { SubtaskItem } from './subtask-item'
+import { useForm } from 'react-hook-form'
+import { TASK_DATA } from '../../task.data'
+import {
+	createTaskValidate,
+	type CreateTaskFormType,
+} from '../constants/create-task.validate'
 
 interface ICreateSubtask {
-	subtaskList: ISubTask[]
+	taskId: string
 }
 
-export const CreateSubtask = ({ subtaskList }: ICreateSubtask) => {
+export const CreateSubtask = ({ taskId }: ICreateSubtask) => {
+	const form = useForm({
+		resolver: zodResolver(createTaskValidate),
+	})
+
+	const onSubmit = (data: CreateTaskFormType) => {
+		const task = TASK_DATA.find(task => task.id === taskId)
+		if (task) {
+			task.subTasks.push({
+				id: crypto.randomUUID(),
+				title: data.title,
+				isCompleted: false,
+			})
+		}
+	}
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -26,11 +55,27 @@ export const CreateSubtask = ({ subtaskList }: ICreateSubtask) => {
 				<DialogHeader>
 					<DialogTitle>Create subtask</DialogTitle>
 				</DialogHeader>
-				<div className='flex flex-col gap-2'>
-					{subtaskList.map(item => (
-						<SubtaskItem key={item.id} {...item} />
-					))}
-				</div>
+				<Form {...form}>
+					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+						<FormField
+							control={form.control}
+							name='title'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Title</FormLabel>
+									<FormControl>
+										<Input {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<Button className='w-full' type='submit'>
+							Create
+						</Button>
+					</form>
+				</Form>
 			</DialogContent>
 		</Dialog>
 	)
