@@ -10,8 +10,8 @@ export const TASK_DATA: ITask[] = [
 		icon: 'Calendar',
 		dueDate: {
 			date: new Date(),
-			startTime: setMinutes(setHours(new Date(), 10), 0),
-			endTime: setMinutes(setHours(new Date(), 13), 30),
+			startTime: setMinutes(setHours(new Date(), 9), 50),
+			endTime: setMinutes(setHours(new Date(), 12), 10),
 		},
 		users: [USERS[0], USERS[1], USERS[2]],
 		comments: ['Initial structure created', 'Need review'],

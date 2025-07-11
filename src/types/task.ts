@@ -21,6 +21,14 @@ export interface ITask extends Omit<ISubTask, 'isCompleted'> {
 	subTasks: ISubTask[]
 }
 
+export interface ITaskWithTime extends ITask {
+	dueDate: {
+		date: Date
+		startTime: Date
+		endTime: Date
+	}
+}
+
 export type TTaskFilter = 'all' | 'completed' | 'uncompleted'
 export type TTaskSortBy = 'asc' | 'desc'
 export type TTaskFormData = Pick<ITask, 'title' | 'dueDate' | 'icon'>

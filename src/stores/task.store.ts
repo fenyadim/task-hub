@@ -1,6 +1,7 @@
 import { TASK_DATA } from '@/components/dashboard/task.data'
 import type {
 	ITask,
+	ITaskWithTime,
 	TSubTaskFormData,
 	TTaskFilter,
 	TTaskFormData,
@@ -22,11 +23,11 @@ class TaskStore {
 		return this.tasks.find(task => task.id === id)
 	}
 
-	get todayTasks(): ITask[] {
+	get todayTasks() {
 		return this.tasks.filter(task => {
 			const taskDate = new Date(task.dueDate.date)
 			return isToday(taskDate)
-		})
+		}) as ITaskWithTime[]
 	}
 
 	addTask(task: ITask): void {

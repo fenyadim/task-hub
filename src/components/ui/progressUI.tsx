@@ -38,7 +38,7 @@ function Progress({
 			/>
 			<div
 				className={cn(
-					'absolute top-0 left-0 h-10 pointer-events-none  bg-[length:28px_28px]',
+					'absolute top-0 left-0 h-10 pointer-events-none rounded-full bg-[length:28px_28px]',
 					{
 						'animate-progress': value < 100,
 					}
