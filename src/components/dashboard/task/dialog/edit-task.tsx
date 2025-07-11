@@ -24,10 +24,14 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
+import { taskStore } from '@/stores/task.store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon, Edit } from 'lucide-react'
+import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import {
 	taskFormSchema,
 	type TaskFormDataType,
@@ -35,19 +39,25 @@ import {
 import { ICON_MAP, ICON_NAMES } from '../constants/task-icons.data'
 
 interface IEditTask {
-	initialValues?: TaskFormDataType
+	taskData: TaskFormDataType & { id: string }
 }
 
-export const EditTask = ({ initialValues }: IEditTask) => {
+export const EditTask = observer(({ taskData }: IEditTask) => {
+	const [isOpenDialog, setIsOpenDialog] = useState(false)
+
 	const form = useForm({
 		resolver: zodResolver(taskFormSchema),
-		defaultValues: initialValues,
+		defaultValues: taskData,
 	})
 
-	const onSubmit = (data: TaskFormDataType) => console.log(data)
+	const onSubmit = (data: TaskFormDataType) => {
+		taskStore.updateTask(taskData.id, data)
+		toast.success('Task updated successfully')
+		setIsOpenDialog(false)
+	}
 
 	return (
-		<Dialog>
+		<Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
 			<DialogTrigger asChild>
 				<Button className='rounded-full' variant='outline' size='icon'>
 					<Edit />
@@ -152,4 +162,4 @@ export const EditTask = ({ initialValues }: IEditTask) => {
 			</DialogContent>
 		</Dialog>
 	)
-}
+})

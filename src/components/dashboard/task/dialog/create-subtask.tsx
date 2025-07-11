@@ -17,10 +17,13 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { taskStore } from '@/stores/task.store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus } from 'lucide-react'
+import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { TASK_DATA } from '../../task.data'
+import { toast } from 'sonner'
 import {
 	createTaskValidate,
 	type CreateTaskFormType,
@@ -30,24 +33,22 @@ interface ICreateSubtask {
 	taskId: string
 }
 
-export const CreateSubtask = ({ taskId }: ICreateSubtask) => {
+export const CreateSubtask = observer(({ taskId }: ICreateSubtask) => {
+	const [isOpenDialog, setIsOpenDialog] = useState(false)
+
 	const form = useForm({
 		resolver: zodResolver(createTaskValidate),
+		defaultValues: { title: '' },
 	})
 
 	const onSubmit = (data: CreateTaskFormType) => {
-		const task = TASK_DATA.find(task => task.id === taskId)
-		if (task) {
-			task.subTasks.push({
-				id: crypto.randomUUID(),
-				title: data.title,
-				isCompleted: false,
-			})
-		}
+		taskStore.addSubTask(taskId, data)
+		toast.success('Subtask created successfully')
+		setIsOpenDialog(false)
 	}
 
 	return (
-		<Dialog>
+		<Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
 			<DialogTrigger asChild>
 				<Button className='rounded-full' size='icon'>
 					<Plus />
@@ -81,4 +82,4 @@ export const CreateSubtask = ({ taskId }: ICreateSubtask) => {
 			</DialogContent>
 		</Dialog>
 	)
-}
+})

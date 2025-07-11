@@ -1,4 +1,4 @@
-import type { LucideIcon } from 'lucide-react'
+import type { IconName } from '@/components/dashboard/task/constants/task-icons.data'
 import type { IUser } from './user'
 
 export interface ISubTask {
@@ -8,7 +8,7 @@ export interface ISubTask {
 }
 
 export interface ITask extends Omit<ISubTask, 'isCompleted'> {
-	Icon: LucideIcon
+	icon: IconName
 	dueDate: Date
 	users: IUser[]
 	comments: string[]
@@ -19,5 +19,5 @@ export interface ITask extends Omit<ISubTask, 'isCompleted'> {
 
 export type TTaskFilter = 'all' | 'completed' | 'uncompleted'
 export type TTaskSortBy = 'asc' | 'desc'
-export type TTaskFormData = Pick<ITask, 'title' | 'dueDate' | 'Icon'>
+export type TTaskFormData = Pick<ITask, 'title' | 'dueDate' | 'icon'>
 export type TSubTaskFormData = Pick<ISubTask, 'title'>

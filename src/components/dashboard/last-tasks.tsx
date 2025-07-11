@@ -24,7 +24,7 @@ export const LastTasks = observer(() => {
 				</div>
 			</div>
 			{filteredTasks.length ? (
-				<div className='grid grid-cols-3 gap-5'>
+				<div className='grid grid-cols-[var(--auto-fill)] gap-5'>
 					{filteredTasks.map(item => (
 						<TaskCard key={item.id} {...item} />
 					))}

@@ -6,14 +6,19 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import type { ISubTask } from '@/types/task'
+import { taskStore } from '@/stores/task.store'
+import { observer } from 'mobx-react-lite'
 import { SubtaskItem } from './subtask-item'
 
 interface IViewSubtask {
-	subtaskList: ISubTask[]
+	taskId: string
 }
 
-export const ViewSubtask = ({ subtaskList }: IViewSubtask) => {
+export const ViewSubtask = observer(({ taskId }: IViewSubtask) => {
+	const task = taskStore.getTaskById(taskId)
+	if (!task) return null
+	const subtaskList = task.subTasks
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -33,4 +38,4 @@ export const ViewSubtask = ({ subtaskList }: IViewSubtask) => {
 			</DialogContent>
 		</Dialog>
 	)
-}
+})

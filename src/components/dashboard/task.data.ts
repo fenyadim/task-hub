@@ -1,5 +1,4 @@
 import type { ITask } from '@/types/task'
-import { ICON_MAP } from './task/constants/task-icons.data'
 import type { IFilterData, ISortData } from './task/types'
 import { USERS } from './user.data'
 
@@ -7,8 +6,8 @@ export const TASK_DATA: ITask[] = [
 	{
 		id: 'task-1',
 		title: 'Design project structure',
-		Icon: ICON_MAP.Calendar,
-		dueDate: new Date('2024-07-01'),
+		icon: 'Calendar',
+		dueDate: new Date('2025-07-20'),
 		users: [USERS[0], USERS[1], USERS[2]],
 		comments: ['Initial structure created', 'Need review'],
 		resources: ['structure.pdf', 'requirements.docx'],
@@ -21,8 +20,8 @@ export const TASK_DATA: ITask[] = [
 	{
 		id: 'task-2',
 		title: 'Implement authentication',
-		Icon: ICON_MAP.User,
-		dueDate: new Date('2024-07-05'),
+		icon: 'User',
+		dueDate: new Date('2025-07-16'),
 		users: [USERS[2], USERS[3]],
 		comments: ['OAuth2 integration started'],
 		resources: ['auth-flow.png'],
@@ -35,8 +34,8 @@ export const TASK_DATA: ITask[] = [
 	{
 		id: 'task-3',
 		title: 'Upload project files',
-		Icon: ICON_MAP.File,
-		dueDate: new Date('2024-07-10'),
+		icon: 'File',
+		dueDate: new Date('2025-07-18'),
 		users: [USERS[4]],
 		comments: [],
 		resources: ['project.zip'],
@@ -44,6 +43,21 @@ export const TASK_DATA: ITask[] = [
 		subTasks: [
 			{ id: 'sub-5', title: 'Compress files', isCompleted: false },
 			{ id: 'sub-6', title: 'Upload to server', isCompleted: false },
+		],
+	},
+	{
+		id: 'task-4',
+		title: 'Upload project files',
+		icon: 'BookOpen',
+		dueDate: new Date('2025-07-13'),
+		users: [USERS[4]],
+		comments: [],
+		resources: ['project.zip'],
+		links: [],
+		subTasks: [
+			{ id: 'sub-7', title: 'Compress files', isCompleted: false },
+			{ id: 'sub-8', title: 'Upload to server', isCompleted: false },
+			{ id: 'sub-9', title: 'Upload to server', isCompleted: true },
 		],
 	},
 ]

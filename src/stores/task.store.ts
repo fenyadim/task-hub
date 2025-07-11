@@ -36,11 +36,14 @@ class TaskStore {
 		const task = this.getTaskById(taskId)
 		if (!task) return
 
-		task.subTasks.push({
-			id: crypto.randomUUID(),
-			title: subtask.title,
-			isCompleted: false,
-		})
+		task.subTasks = [
+			...task.subTasks,
+			{
+				id: crypto.randomUUID(),
+				title: subtask.title,
+				isCompleted: false,
+			},
+		]
 	}
 
 	setFilter(filter: TTaskFilter): void {
