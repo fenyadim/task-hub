@@ -5,7 +5,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
 	return (
 		<div className='flex h-full'>
 			<Sidebar />
-			<main className='p-5 flex-1'>
+			<main className='p-5 flex-1 overflow-y-auto'>
 				<Header />
 				{children}
 			</main>

@@ -1,4 +1,5 @@
 import type { ITask } from '@/types/task'
+import { setHours, setMinutes } from 'date-fns'
 import type { IFilterData, ISortData } from './task/types'
 import { USERS } from './user.data'
 
@@ -7,7 +8,11 @@ export const TASK_DATA: ITask[] = [
 		id: 'task-1',
 		title: 'Design project structure',
 		icon: 'Calendar',
-		dueDate: new Date('2025-07-20'),
+		dueDate: {
+			date: new Date(),
+			startTime: setMinutes(setHours(new Date(), 10), 0),
+			endTime: setMinutes(setHours(new Date(), 13), 30),
+		},
 		users: [USERS[0], USERS[1], USERS[2]],
 		comments: ['Initial structure created', 'Need review'],
 		resources: ['structure.pdf', 'requirements.docx'],
@@ -21,7 +26,11 @@ export const TASK_DATA: ITask[] = [
 		id: 'task-2',
 		title: 'Implement authentication',
 		icon: 'User',
-		dueDate: new Date('2025-07-16'),
+		dueDate: {
+			date: new Date(),
+			startTime: setMinutes(setHours(new Date(), 13), 0),
+			endTime: setMinutes(setHours(new Date(), 15), 30),
+		},
 		users: [USERS[2], USERS[3]],
 		comments: ['OAuth2 integration started'],
 		resources: ['auth-flow.png'],
@@ -35,7 +44,9 @@ export const TASK_DATA: ITask[] = [
 		id: 'task-3',
 		title: 'Upload project files',
 		icon: 'File',
-		dueDate: new Date('2025-07-18'),
+		dueDate: {
+			date: new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000),
+		},
 		users: [USERS[4]],
 		comments: [],
 		resources: ['project.zip'],
@@ -49,7 +60,9 @@ export const TASK_DATA: ITask[] = [
 		id: 'task-4',
 		title: 'Upload project files',
 		icon: 'BookOpen',
-		dueDate: new Date('2025-07-13'),
+		dueDate: {
+			date: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000),
+		},
 		users: [USERS[4]],
 		comments: [],
 		resources: ['project.zip'],

@@ -9,7 +9,11 @@ export interface ISubTask {
 
 export interface ITask extends Omit<ISubTask, 'isCompleted'> {
 	icon: IconName
-	dueDate: Date
+	dueDate: {
+		date: Date
+		startTime?: Date
+		endTime?: Date
+	}
 	users: IUser[]
 	comments: string[]
 	resources: string[]

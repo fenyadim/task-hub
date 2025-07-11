@@ -24,7 +24,10 @@ export const TaskCard = observer(
 	}: ITask) => {
 		const progress = useMemo(() => progressValue(subTasks), [subTasks])
 		const dueDateLeft = useMemo(
-			() => Math.ceil((dueDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
+			() =>
+				Math.ceil(
+					(dueDate.date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+				),
 			[dueDate]
 		)
 		const Icon = useMemo(() => ICON_MAP[icon], [icon])
@@ -70,7 +73,7 @@ export const TaskCard = observer(
 								taskData={{
 									id,
 									title,
-									dueDate,
+									dueDate: dueDate.date,
 									icon,
 								}}
 							/>

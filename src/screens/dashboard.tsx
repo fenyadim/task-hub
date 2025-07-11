@@ -1,4 +1,9 @@
-import { LastTasks, ProjectChart, ProjectStats } from '@/components/dashboard'
+import {
+	LastTasks,
+	ProjectChart,
+	ProjectStats,
+	TasksTimeline,
+} from '@/components/dashboard'
 
 export const DashboardPage = () => {
 	return (
@@ -8,6 +13,7 @@ export const DashboardPage = () => {
 				<ProjectChart />
 			</div>
 			<LastTasks />
+			<TasksTimeline />
 		</div>
 	)
 }
