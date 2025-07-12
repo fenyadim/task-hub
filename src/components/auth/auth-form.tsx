@@ -11,6 +11,7 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { createSession } from '@/lib/session'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -39,10 +40,14 @@ export const AuthForm = ({ type }: IAuthForm) => {
 		setShowPassword(!showPassword)
 	}
 
-	function onSubmit(data: TLoginForm) {
-		console.log(data)
-		toast.success(MESSAGE_TOAST[type])
+	async function onSubmit(data: TLoginForm) {
+		toast.success(MESSAGE_TOAST[type], {
+			id: type,
+		})
 		form.reset()
+
+		const mockId = crypto.randomUUID()
+		await createSession(mockId)
 		router.replace('/dashboard')
 	}
 
